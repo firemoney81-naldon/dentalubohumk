@@ -1,23 +1,528 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+    <style>
+        /* Base Styles Reset */
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7; /* Increased line height for better readability */
+            color: #333;
+            background: #f4f6f9; /* Soft light background */
+        }
+        header, section, footer {
+            padding: 40px 20px; /* Increased padding */
+            max-width: 1200px;
+            margin: auto;
+            background: #fff;
+            margin-bottom: 25px; /* Increased margin between sections */
+            border-radius: 10px; /* Softer border radius */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Stronger but softer shadow */
+        }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(135deg, #f0f0f5, #ffffff); /* Subtle gradient for header */
+            border-bottom: 5px solid #00a0e9; /* Strong accent color for dental/health theme */
+            padding-bottom: 30px;
+        }
+        header h1 {
+            color: #00a0e9;
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: 900;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+        header p {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.8;
+        }
+        header strong {
+            color: #d90000; /* Red emphasis for cost saving */
+            font-weight: 700;
+        }
+
+        /* Navigation Styling */
+        nav {
+            background: #00a0e9; /* Primary color for navigation */
+            border-radius: 10px;
+            text-align: center;
+            padding: 18px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0, 160, 233, 0.3);
+        }
+        nav a {
+            color: #fff;
+            margin: 0 20px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s, background-color 0.3s;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background-color: #008cc0; /* Darker hover effect */
+            text-decoration: none;
+        }
+
+        /* General Heading Styles */
+        h2 {
+            font-size: 2rem;
+            color: #333;
+            border-left: 5px solid #00a0e9; /* Vertical accent line */
+            padding-left: 15px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        h3 {
+            font-size: 1.5rem;
+            color: #00a0e9;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* CTA (Call to Action) Button */
+        .cta {
+            display: inline-block;
+            background-color: #00a0e9;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 160, 233, 0.4);
+        }
+        .cta:hover {
+            background-color: #008cc0;
+            transform: translateY(-2px);
+        }
+
+        /* Card Layout for Services/Features */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .feature-card {
+            background: #fdfdfd;
+            border: 1px solid #ddd;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .feature-card:hover {
+            box-shadow: 0 6px 15px rgba(0, 160, 233, 0.2);
+            transform: translateY(-5px);
+        }
+        .feature-card h3 {
+            color: #00a0e9;
+            border-bottom: none;
+            margin-top: 0;
+        }
+
+        /* Forms Styling */
+        form {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #eee;
+        }
+        form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #555;
+            font-size: 1.05rem;
+        }
+        form input, form select, form textarea {
+            width: calc(100% - 20px); /* Adjust width based on padding */
+            padding: 12px;
+            margin-top: 4px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            box-sizing: border-box; /* Include padding in element's total width and height */
+        }
+        form button {
+            margin-top: 20px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        /* FAQ Styling */
+        dl.faq dt {
+            font-weight: 700;
+            margin-top: 25px;
+            cursor: pointer;
+            color: #00a0e9;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        dl.faq dt:hover {
+            color: #008cc0;
+        }
+        dl.faq dd {
+            margin-left: 15px;
+            margin-top: 10px;
+            color: #555;
+            border-left: 3px solid #eee;
+            padding-left: 15px;
+        }
+
+        /* Tables and Graphs */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            font-size: 0.95rem;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f8ff; /* Light blue background for headers */
+            font-weight: 700;
+            color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: #fcfcfc;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Additional content styling for long-form text readability */
+        section p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        section li {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        .highlight {
+            background-color: #ffe0b2; /* Light orange highlight for keywords */
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        .warning-box {
+            background-color: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-size: 0.95rem;
+        }
+        .info-box {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-size: 0.95rem;
+        }
+
+        /* Footer Styling */
+        footer {
+            background: #e9ecef;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9rem;
+            color: #6c757d;
+            border-top: 1px solid #dee2e6;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #00a0e9;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.8rem; }
+            nav a { margin: 0 10px; font-size: 0.9rem; padding: 6px 10px; }
+            section, footer { padding: 20px 15px; }
+            .feature-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+
+    <!-- JSON-LD Schema for Service & FAQPage (Updated for new topic) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalBusiness",
+      "name": "보험 임플란트 전문 상담 센터",
+      "image": "https://www.yourdomain.kr/images/implant_main.png",
+      "telephone": "1661-XXXX",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "서울 강남구 테헤란로 123",
+        "addressLocality": "서울",
+        "addressRegion": "서울특별시",
+        "postalCode": "12345",
+        "addressCountry": "KR"
+      },
+      "url": "https://www.yourdomain.kr/",
+      "openingHours": "Mo-Fr 09:00-18:00",
+      "areaServed": "대한민국 전역",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "임플란트 상담 서비스",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "건강보험 임플란트 상담"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "보험 임플란트 견적 비교"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "노인 임플란트 비용 지원 안내"}}
+        ]
+      }
+    }
+    </script>
+</head>
+<body>
+
+<!-- Header Section -->
+<header id="top">
+    <h1><i class="fas fa-tooth"></i> 보험 임플란트 2026년 가이드: 건강보험 적용 기준 및 비용 절감 팁</h1>
+    <p>치아 건강, 이제 더 이상 부담 갖지 마세요. <strong>2026년 건강보험 적용 기준</strong>에 맞춰 <span class="highlight">임플란트 비용</span>을 최소화하는 방법을 알려드립니다.</p>
+    <a href="#quote_form" class="cta">무료 견적 및 상담 신청하기</a>
+</header>
+
+<!-- Navigation Menu -->
+<nav>
+    <a href="#health_insurance">건강보험 적용 기준</a>
+    <a href="#cost_analysis">비용 및 견적 분석</a>
+    <a href="#implant_process">임플란트 절차</a>
+    <a href="#comparison">종류별 장단점 비교</a>
+    <a href="#reviews">내돈내산 후기</a>
+    <a href="#quote_form">견적 신청</a>
+    <a href="#faq">자주 묻는 질문</a>
+</nav>
+
+<!-- Main Content Area: Health Insurance Coverage Details -->
+<section id="health_insurance" aria-label="건강보험 임플란트 적용 기준">
+    <h2><i class="fas fa-file-contract"></i> 2026년 건강보험 임플란트 적용 기준 상세 안내</h2>
+    <p>정부 지원 혜택을 받을 수 있는 <span class="highlight">보험 임플란트</span>는 65세 이상 어르신이라면 누구나 받을 수 있는 혜택입니다. 하지만 정확한 <span class="highlight">건강보험 적용 기준</span>을 알아야 예상치 못한 비용 지출을 막을 수 있습니다.</p>
+    <div class="info-box">
+        <h3>주요 적용 대상 및 횟수 (2026년 기준)</h3>
+        <ul>
+            <li><strong>대상 연령:</strong> 만 65세 이상 (1961년 12월 31일 이전 출생자)</li>
+            <li><strong>적용 횟수:</strong> 평생 2개까지 (부분 무치악 환자 기준)</li>
+            <li><strong>적용 부위:</strong> 어금니 및 앞니 모두 적용 (단, 앞니는 심미적인 목적이 아닌 저작 기능 회복 시에만 적용)</li>
+            <li><strong>주의사항:</strong> 완전 무치악 (치아가 하나도 없는 경우) 환자는 건강보험 임플란트 대상에서 제외됩니다.</li>
+        </ul>
+    </div>
+
+    <h3><i class="fas fa-balance-scale"></i> 본인부담금 30%의 의미와 계산법</h3>
+    <p>건강보험이 적용되면 <span class="highlight">임플란트 비용</span> 전체를 지원받는 것이 아니라, <span class="highlight">본인부담금</span> 30%만 납부하게 됩니다. 이는 비급여 항목인 일반 임플란트 <span class="highlight">가격</span>에 비해 획기적으로 <span class="highlight">저렴한</span> 수준입니다.</p>
+    <table aria-label="보험 임플란트 본인부담금 예시">
+        <thead>
+            <tr>
+                <th>구분</th>
+                <th>비급여 임플란트 (일반)</th>
+                <th>보험 임플란트 (65세 이상)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>총 <span class="highlight">비용</span></td>
+                <td><span class="highlight">평균</span> 120만원 ~ 180만원</td>
+                <td><span class="highlight">평균</span> 30만원 ~ 45만원 (본인부담금 30%)</td>
+            </tr>
+            <tr>
+                <td><span class="highlight">견적</span> 예시 (개당)</td>
+                <td>150만원</td>
+                <td>약 40만원 (병원에 따라 <span class="highlight">가격</span> 상이)</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>정확한 <span class="highlight">예상 금액</span>은 치과마다 책정된 <span class="highlight">보험 임플란트</span> 수가가 다르므로, 반드시 <span class="highlight">견적</span> 상담을 통해 확인해야 합니다.</p>
+    <p><strong>참고:</strong> 건강보험 임플란트는 PFM 크라운 재료가 기본 적용됩니다. 만약 지르코니아 등 고급 재료를 원하면 비급여 항목으로 전환되거나 추가 <span class="highlight">비용</span>이 발생합니다.</p>
+</section>
+
+<!-- Main Content Area: Cost Comparison and Analysis -->
+<section id="cost_analysis" aria-label="임플란트 비용 및 가격 비교">
+    <h2><i class="fas fa-calculator"></i> 임플란트 <span class="highlight">비용</span>, <span class="highlight">가격</span> 비교 분석: <span class="highlight">저렴한곳</span> 찾는 방법</h2>
+    <p><span class="highlight">보험 임플란트</span>가 아닌 경우에도 <span class="highlight">임플란트 가격</span>은 천차만별입니다. <span class="highlight">싼곳</span>을 찾다가 품질이 떨어지는 결과를 얻거나, 반대로 비싼 <span class="highlight">견적</span>에 부담을 느낄 수 있습니다. <span class="highlight">임플란트 평균 가격</span>을 기준으로 합리적인 선택을 위한 <span class="highlight">장점</span>과 <span class="highlight">단점</span>을 비교해드립니다.</p>
+
+    <h3><i class="fas fa-chart-bar"></i> 2026년 임플란트 평균 비용대 분석 (비급여 기준)</h3>
+    <p>임플란트 <span class="highlight">가격</span>을 결정하는 요인은 크게 '임플란트 종류(제조사)', '의료진의 숙련도', '치과 규모'입니다. 최근에는 기술 발달로 <span class="highlight">저렴한</span> 국산 임플란트도 성능이 향상되었지만, 개인의 잇몸 상태에 따라 선택이 달라집니다.</p>
+    <table aria-label="임플란트 제조사별 가격대 비교 (비급여)">
+        <thead>
+            <tr>
+                <th>구분</th>
+                <th>대표 제조사</th>
+                <th><span class="highlight">평균 가격</span>대 (개당)</th>
+                <th>특징 및 <span class="highlight">장단점</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>국산 (대중)</td>
+                <td><span class="highlight">오스템 임플란트</span>, <span class="highlight">덴티움 임플란트</span> 등</td>
+                <td>70만원 ~ 120만원</td>
+                <td><span class="highlight">장점</span>: 뛰어난 가성비, 보편적인 사용, <span class="highlight">저렴한</span> <span class="highlight">가격</span>. <span class="highlight">단점</span>: 잇몸 상태에 따라 수술 난이도 고려 필요.</td>
+            </tr>
+            <tr>
+                <td>국산 (고급)</td>
+                <td>디오, 덴티스 등 특수 표면 처리 제품</td>
+                <td>100만원 ~ 150만원</td>
+                <td><span class="highlight">장점</span>: 빠른 골 융합, 뼈가 약한 환자에게 적합. <span class="highlight">단점</span>: 일반 국산 대비 다소 높은 <span class="highlight">비용</span>.</td>
+            </tr>
+            <tr>
+                <td>외산 (프리미엄)</td>
+                <td>스트라우만, 노벨 바이오케어 등</td>
+                <td>150만원 ~ 250만원</td>
+                <td><span class="highlight">장점</span>: 긴 임상 경력, 높은 안정성. <span class="highlight">단점</span>: <span class="highlight">가격</span>대가 높고, 보험 적용 불가.</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>함께 많이 찾는 키워드:</strong> 임플란트 <span class="highlight">싼곳</span>, <span class="highlight">저렴한곳</span>, 임플란트 <span class="highlight">내돈내산</span> 후기, 임플란트 잘하는 병원 <span class="highlight">순위</span>, 임플란트 <span class="highlight">추천</span> 병원</p>
+
+    <h3><i class="fas fa-search-dollar"></i> 임플란트 <span class="highlight">견적</span> <span class="highlight">비교</span> 시 주의사항</h3>
+    <p>단순히 <span class="highlight">임플란트 비용</span>이 <span class="highlight">저렴한곳</span>만 찾기보다, 추가 <span class="highlight">비용</span> 발생 여부를 확인해야 합니다. 임플란트는 치과 치료 중에서도 고난이도에 속하므로, <span class="highlight">싼곳</span>을 찾을 때 다음을 유의해야 합니다.</p>
+    <ul>
+        <li><strong>추가 <span class="highlight">비용</span> 발생 여부:</strong> 뼈이식(골이식) <span class="highlight">비용</span>이 <span class="highlight">견적</span>에 포함되어 있는지 확인해야 합니다. 잇몸뼈가 부족한 경우 뼈이식은 필수이며, 비급여 항목으로 별도의 <span class="highlight">가격</span>이 책정됩니다.</li>
+        <li><strong>사후 관리(AS) 기간:</strong> 임플란트 수술 후 보증 기간을 확인해야 합니다. <span class="highlight">저렴한곳</span>은 사후 관리 기간이 짧거나 추가 <span class="highlight">비용</span>을 요구할 수 있습니다.</li>
+        <li><strong>의료진 숙련도:</strong> <span class="highlight">임플란트</span>는 집도의의 경험이 중요합니다. <span class="highlight">내돈내산 후기</span>나 경력을 통해 숙련도를 확인해야 합니다.</li>
+    </ul>
+    <p><strong>자동완성 키워드 분석:</strong> 임플란트 <span class="highlight">가격</span>, 임플란트 <span class="highlight">종류</span>, <span class="highlight">65세 이상 임플란트</span>, <span class="highlight">임플란트 보험 적용</span>, <span class="highlight">임플란트 틀니 차이점</span></p>
+</section>
+
+<!-- Main Content Area: Implant Procedure and Types -->
+<section id="implant_process" aria-label="임플란트 식립 절차 및 종류">
+    <h2><i class="fas fa-dental-chair"></i> 임플란트 식립 절차 및 <span class="highlight">종류별 장단점</span> 분석</h2>
+    <p><span class="highlight">보험 임플란트</span>든 일반 <span class="highlight">임플란트</span>든, 식립 과정은 동일합니다. 임플란트 시술 절차를 미리 이해하고 <span class="highlight">종류별 장단점</span>을 비교하여 최적의 선택을 하세요.</p>
+
+    <h3><i class="fas fa-list-ol"></i> 일반적인 임플란트 시술 절차</h3>
+    <ol>
+        <li><strong>정밀 진단 및 계획:</strong> 3D CT 촬영을 통해 잇몸뼈 상태, 신경 위치 등을 정확히 파악하여 수술 계획을 수립합니다.</li>
+        <li><strong>1차 수술 (식립):</strong> 잇몸을 절개하여 잇몸뼈에 임플란트 기둥(픽스처)을 심습니다. <span class="highlight">보험 임플란트</span>의 경우 픽스처 <span class="highlight">종류</span>가 제한될 수 있습니다.</li>
+        <li><strong>골 융합 (힐링 기간):</strong> 잇몸뼈와 임플란트 기둥이 단단하게 결합되는 기간 (평균 3~6개월).</li>
+        <li><strong>2차 수술 및 보철물 장착:</strong> 잇몸을 열고 기둥 위에 보철물(크라운)을 연결합니다.</li>
+        <li><strong>사후 관리:</strong> 정기적인 검진과 스케일링을 통해 임플란트의 수명을 유지합니다.</li>
+    </ol>
+    <div class="warning-box">
+        <h4><i class="fas fa-exclamation-triangle"></i> 임플란트 부작용 예방 및 <span class="highlight">단점</span></h4>
+        <p>임플란트는 성공률이 높은 시술이지만, <span class="highlight">부작용</span>을 완전히 배제할 수 없습니다. 주요 <span class="highlight">단점</span>으로는 신경 손상, 임플란트 주위염 등이 있습니다. 이러한 <span class="highlight">부작용</span>을 예방하기 위해서는 집도의의 경험과 정기적인 검진이 필수입니다. <span class="highlight">내돈내산 후기</span>를 통해 <span class="highlight">임플란트 잘하는 병원</span>을 찾는 것이 중요합니다.</p>
+    </div>
+
+    <h3><i class="fas fa-cubes"></i> 임플란트 <span class="highlight">종류</span>와 특수 임플란트 <span class="highlight">장단점</span> 비교</h3>
+    <p>환자의 잇몸 상태와 필요에 따라 다양한 <span class="highlight">임플란트 종류</span>가 적용될 수 있습니다. <span class="highlight">보험 임플란트</span>는 일반적인 식립에 해당하며, 아래와 같은 특수 임플란트는 비급여 <span class="highlight">비용</span>이 발생합니다.</p>
+    <dl>
+        <dt><strong><span class="highlight">네비게이션 임플란트</span> (디지털 임플란트)</strong></dt>
+        <dd>3D CT 기반으로 수술 전 모의 수술을 진행하여 정확한 위치에 식립하는 방법입니다. <span class="highlight">장점</span>: 빠른 수술 시간, 적은 통증. <span class="highlight">단점</span>: 일반 임플란트보다 <span class="highlight">가격</span>이 높습니다.</dd>
+        <dt><strong><span class="highlight">뼈이식 임플란트</span></strong></dt>
+        <dd>잇몸뼈가 부족한 경우 뼈이식 후 진행하는 임플란트입니다. <span class="highlight">장점</span>: 뼈가 약해도 시술 가능. <span class="highlight">단점</span>: <span class="highlight">비용</span>이 추가되고 시술 기간이 길어집니다.</dd>
+    </dl>
+</section>
+
+<!-- Main Content Area: Customer Reviews and Trust Building -->
+<section id="reviews" aria-label="고객 후기 및 내돈내산 사례">
+    <h2><i class="fas fa-star"></i> 고객 사례 및 <span class="highlight">내돈내산 후기</span>: <span class="highlight">임플란트 잘하는 병원</span> 선택 팁</h2>
+    <p><span class="highlight">임플란트</span> 시술을 고려하는 많은 분들이 <span class="highlight">내돈내산 후기</span>를 통해 <span class="highlight">임플란트 잘하는 병원</span>을 찾고 싶어 합니다. <span class="highlight">싼곳</span>보다는 믿을 수 있는 병원을 선택하는 것이 중요합니다. 다음은 실제 상담 사례를 바탕으로 작성한 후기입니다.</p>
+
+    <div class="feature-card">
+        <h3>사례 1: <span class="highlight">65세 이상 임플란트 보험 적용</span> 후기</h3>
+        <p>“만 67세이신 어머니께서 <span class="highlight">보험 임플란트</span> 혜택으로 <span class="highlight">비용</span> 부담을 크게 줄이셨습니다. <span class="highlight">건강보험 적용 기준</span>에 맞춰 2개의 <span class="highlight">임플란트</span>를 30만원대 <span class="highlight">견적</span>으로 진행할 수 있었습니다. <span class="highlight">저렴한곳</span>을 찾다가 상담을 통해 <span class="highlight">보험 적용</span>을 받을 수 있다는 것을 알게 되었습니다.”</p>
+    </div>
+    <div class="feature-card">
+        <h3>사례 2: <span class="highlight">사고로 인한 임플란트</span> <span class="highlight">비용</span> 상담 후기</h3>
+        <p>“갑작스러운 사고로 앞니 1개가 손상되어 <span class="highlight">임플란트</span>가 필요했습니다. 65세 미만이라 <span class="highlight">보험 적용</span>은 안되었지만, <span class="highlight">임플란트 가격 비교</span>를 통해 <span class="highlight">저렴한</span> <span class="highlight">국산 임플란트</span>를 선택하여 <span class="highlight">예상 금액</span>보다 낮은 <span class="highlight">견적</span>으로 진행했습니다. <span class="highlight">내돈내산 후기</span>를 보고 병원을 선택했는데 만족합니다.”</p>
+    </div>
+    <div class="feature-card">
+        <h3>사례 3: <span class="highlight">임플란트 종류</span> 선택 <span class="highlight">장단점 비교</span> 상담 후기</h3>
+        <p>“잇몸뼈가 약하다는 진단을 받아 <span class="highlight">뼈이식 임플란트</span>를 해야 했습니다. <span class="highlight">가격</span>이 부담스러웠는데, <span class="highlight">임플란트 종류별 장단점</span>을 상세히 설명해주셔서 <span class="highlight">보험 적용</span>은 안되더라도 <span class="highlight">저렴한곳</span>보다는 안정성을 선택했습니다. 사후관리까지 꼼꼼하게 진행되어 만족합니다.”</p>
+    </div>
+    <div class="info-box">
+        <h4><i class="fas fa-link"></i> 공신력 있는 외부 자료 참고</h4>
+        <p>임플란트 <span class="highlight">보험 적용 기준</span>은 <a href="https://www.nhis.or.kr/" target="_blank">국민건강보험공단 홈페이지</a>나 <a href="https://www.mohw.go.kr/" target="_blank">보건복지부 홈페이지</a>에서 최신 정보를 확인하는 것이 가장 정확합니다.</p>
+        <p>임플란트 관련 정보와 <span class="highlight">종류별 장단점</span>은 <a href="https://namu.wiki/w/%EC%9E%84%ED%94%8C%EB%9E%80%ED%8A%B8" target="_blank">나무위키 임플란트 문서</a>에서도 자세히 확인할 수 있습니다.</p>
+    </div>
+</section>
+
+<!-- Main Content Area: Free Consultation Form (Enhanced for Dwell Time) -->
+<section id="quote_form" aria-label="무료 견적 신청 및 상담">
+    <h2><i class="fas fa-clinic-medical"></i> 맞춤형 <span class="highlight">보험 임플란트</span> <span class="highlight">견적</span> <span class="highlight">신청하기</span></h2>
+    <p>본인에게 맞는 <span class="highlight">보험 임플란트</span> <span class="highlight">적용 여부</span>와 <span class="highlight">예상 금액</span>을 확인하세요. 아래 폼을 작성하시면 전문 상담사가 <strong>2026년 최신 건강보험 기준</strong>에 맞춰 <span class="highlight">임플란트 비용</span>을 안내해 드립니다.</p>
+    <form action="/submit-estimate" method="POST" aria-describedby="quote-description">
+        <p id="quote-description"><strong>정확한 견적</strong>을 위해 상세 정보를 입력해주시면 더욱 빠른 상담이 가능합니다.</p>
+
+        <label for="name">이름</label>
+        <input type="text" id="name" name="name" placeholder="홍길동" required />
+
+        <label for="phone">연락처</label>
+        <input type="tel" id="phone" name="phone" placeholder="010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required />
+
+        <label for="birthdate">생년월일 (만 65세 이상 여부 확인용)</label>
+        <input type="text" id="birthdate" name="birthdate" placeholder="예: 19580101 (8자리 입력)" required />
+
+        <label for="insurance_type">건강보험 적용 대상 여부</label>
+        <select id="insurance_type" name="insurance_type" required>
+            <option value="">선택하세요</option>
+            <option value="over65">만 65세 이상 (건강보험 적용 대상)</option>
+            <option value="under65">만 65세 미만 (비급여 상담 희망)</option>
+        </select>
+
+        <label for="implant_count">희망 식립 개수</label>
+        <select id="implant_count" name="implant_count" required>
+            <option value="">선택하세요</option>
+            <option value="1">1개</option>
+            <option value="2">2개</option>
+            <option value="3plus">3개 이상</option>
+        </select>
+
+        <label for="implant_location">희망 식립 부위</label>
+        <select id="implant_location" name="implant_location">
+            <option value="">선택하세요</option>
+            <option value="molar">어금니</option>
+            <option value="anterior">앞니</option>
+            <option value="multiple">복합 부위</option>
+        </select>
+
+        <label for="current_condition">현재 잇몸 및 치아 상태 (간략 설명)</label>
+        <textarea id="current_condition" name="current_condition" placeholder="예: 잇몸뼈가 약하다는 진단을 받았습니다. / 당뇨 등 기저질환이 있습니다." rows="3"></textarea>
+
+        <label for="contact_time">상담 희망 시간대</label>
+        <input type="text" id="contact_time" name="contact_time" placeholder="예: 평일 오전 10시~12시" />
+
+        <button type="submit" class="cta">무료 견적 요청하기</button>
+    </form>
+</section>
+
+<!-- Main Content Area: FAQ -->
+<section id="faq" aria-label="자주 묻는 질문 FAQ">
+    <h2><i class="fas fa-question-circle"></i> 자주 묻는 질문 (<span class="highlight">보험 임플란트</span> FAQ)</h2>
+    <dl class="faq">
+        <dt>Q. <span class="highlight">65세 이상 임플란트 보험 적용</span> 시 <span class="highlight">가격</span>은 얼마인가요?</dt>
+        <dd>A. 건강보험 적용 시 <span class="highlight">임플란트 비용</span>의 30%를 본인이 부담하며, <span class="highlight">평균 가격</span>은 개당 30~45만원 선입니다. 정확한 <span class="highlight">견적</span>은 치과마다 다르므로 상담을 통해 확인해야 합니다.</dd>
+
+        <dt>Q. <span class="highlight">임플란트 종류별 장단점</span> 중 <span class="highlight">보험 임플란트</span>는 어떤 <span class="highlight">종류</span>가 적용되나요?</dt>
+        <dd>A. <span class="highlight">보험 임플란트</span>는 PFM(Porcelain Fused to Metal) 크라운을 기본으로 적용합니다. 심미성이 중요한 앞니나 강도가 중요한 어금니의 경우 지르코니아를 선택할 수 있으나, 이 경우 <span class="highlight">비용</span>이 추가됩니다.</dd>
+
+        <dt>Q. <span class="highlight">임플란트</span> <span class="highlight">장점</span>과 <span class="highlight">단점</span>을 알려주세요.</dt>
+        <dd>A. <span class="highlight">장점</span>: 자연치아와 유사한 저작력 회복, 주변 치아 손상 최소화, 반영구적인 수명. <span class="highlight">단점</span>: 수술 기간이 길고, <span class="highlight">부작용</span> 가능성이 있으며, 비보험 시 <span class="highlight">가격</span>이 높습니다.</dd>
+
+        <dt>Q. <span class="highlight">보험 임플란트</span> <span class="highlight">가입</span>이나 <span class="highlight">순위</span>가 있나요?</dt>
+        <dd>A. <span class="highlight">보험 임플란트</span>는 '가입'하는 것이 아니라 <span class="highlight">건강보험 적용 기준</span>(만 65세 이상, 부분 무치악 등)을 충족하면 누구나 혜택을 받을 수 있습니다. <span class="highlight">임플란트 싼곳</span> <span class="highlight">순위</span>는 치과마다 다르고 개인차가 크므로, <span class="highlight">내돈내산 후기</span>를 참고하고 직접 상담을 받아보는 것이 좋습니다.</dd>
+    </dl>
+</section>
+
+
+  
